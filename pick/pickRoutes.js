@@ -2,15 +2,7 @@ const express = require('express');
 const pickRouter = express.Router();
 
 const Pick = require('./pickModel');
-
-pickRouter.post('/create', function (req, res) {
-	console.log('creating a pick', req.body);
-	Pick.create(req.body).then(pick => {
-		pick.populate('user').populate('game', function (err) {
-			res.json(pick);
-		});
-	});
-});
+const League = require('../league/leagueModel');
 
 pickRouter.post('/fetch', function (req, res) {
 	// const { date, userName } = req.query;
@@ -22,10 +14,35 @@ pickRouter.post('/fetch', function (req, res) {
 	});
 });
 
+pickRouter.post('/create', function (req, res) {
+	console.log('creating a pick', req.body);
+	Pick.create(req.body).then(pick => {
+		League.findById(pick.league).then(league => {
+			league.picks.push(pick._id);
+			league.save().then(updated => {
+				pick.populate('user').populate('game', function (err) {
+					res.json(pick);
+				});
+			});
+		});
+
+	});
+});
+
+
+
 pickRouter.post('/delete', function (req, res) {
 	const { id } = req.body;
 	Pick.findByIdAndRemove(id).then(deleted => {
-		res.json(deleted);
+		League.findByIdAndUpdate(deleted.league,
+			{ $pull: { picks: deleted._id } }, function (err, doc) {
+				if (err) {
+					console.log(err);
+				} else {
+					res.json(deleted);
+				}
+			}
+		);
 	});
 });
 

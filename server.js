@@ -9,6 +9,7 @@ const userRoutes = require('./user/UserRoutes');
 const pickRouter = require('./pick/pickRoutes');
 const gameRouter = require('./game/gameRoutes');
 const leagueRouter = require('./league/leagueRoutes');
+const seasonRouter = require('./season/seasonRoutes');
 // const customFoodRouter = require('./customFood/CustomFoodRoutes');
 // const systemFoodRouter = require('./systemFood/SystemFoodRoutes');
 
@@ -35,6 +36,7 @@ server.use('/user', userRoutes);
 server.use('/pick', pickRouter);
 server.use('/game', gameRouter);
 server.use('/league', leagueRouter);
+server.use('/season', seasonRouter);
 // server.use('/customFood', customFoodRouter);
 // server.use('/systemFood', systemFoodRouter);
 
@@ -50,6 +52,7 @@ server.listen(port, () => {
     // Game.create(games, function () {
     //     console.log('inserted');
     // });
+
 
 
 });

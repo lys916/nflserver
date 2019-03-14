@@ -53,6 +53,69 @@ userRouter.post('/login', function (req, res) {
     });
 });
 
+userRouter.post('/invite', function (req, res) {
+    console.log('user inviting', req.body);
+    const { leagueName, leaguePin, leagueId, leagueNotes, startWeek, endWeek } = req.body.league;
+    const { userName, email } = req.body.user;
+    const { inviteEmails } = req.body.emails;
+    ///////////////////////////////////////////////////////////////////////
+    "use strict";
+    const nodemailer = require("nodemailer");
+
+    // async..await is not allowed in global scope, must use a wrapper
+    async function main() {
+
+        // Generate test SMTP service account from ethereal.email
+        // Only needed if you don't have a real mail account for testing
+        let account = await nodemailer.createTestAccount();
+
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'lysaephan@gmail.com',
+                pass: 'Lantern1'
+            }
+        });
+
+        // setup email data with unicode symbols
+        let mailOptions = {
+            from: '"Super Pickem NFL" <no-reply>@superpickem.com', // sender address
+            to: req.body.emails, // list of receivers
+            subject: "You've been invited to play Super Pickem NFL", // Subject line
+            // text: "Hello world?", // plain text body
+            html: `
+            <b>Hello, you've been invited by ${req.body.user.name} to play Super Pickem. Below is the league details. You will need the league ID and PIN to join.<br/>
+            <br/>
+            League name: ${leagueName}<br/>
+            League ID: ${leagueId}<br/>
+            League PIN: ${leaguePin}<br/>
+            Start week: ${startWeek}<br/>
+            End week: ${endWeek}<br/>
+            League rules & notes: <br/>
+            ${leagueNotes}<br/>
+            <br/>
+            Don't have the Super Pickem app? Download it for free at:<br/>
+            Google play www.google.com/playsotre<br/>
+            Apple Store www.apple.com/store</b>` // html body
+        };
+
+        // send mail with defined transport object
+        let info = await transporter.sendMail(mailOptions)
+        res.json({ sent: true });
+        console.log("Message sent: %s", info.messageId);
+        // Preview only available when sending through an Ethereal account
+        // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+    }
+
+    main().catch(console.error);
+    ////////////////////////////////////////////////////////////////////////
+
+});
+
 userRouter.get('/byLeagueId/:leagueId', function (req, res) {
     const { leagueId } = req.params;
     User.find({ leagues: leagueId }).then(users => {

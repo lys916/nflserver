@@ -1,7 +1,7 @@
 const express = require('express');
-const gameRouter = express.Router();
+const seasonRouter = express.Router();
 
-const Game = require('./gameModel');
+const Season = require('./seasonModel');
 
 // pickRouter.post('/create', function (req, res) {
 //     console.log('creating a pick', req.body);
@@ -10,21 +10,10 @@ const Game = require('./gameModel');
 //     });
 // });
 
-gameRouter.get('/fetch/:week', function (req, res) {
-    console.log('fetching games week', req.params);
-    // const { date, userName } = req.query;
-    // console.log('get food data', req.body)
-    Game.find({ week: req.params.week }).then(games => {
-        res.json(games);
-    });
-});
+seasonRouter.get('/', function (req, res) {
 
-gameRouter.get('/fetch', function (req, res) {
-    // console.log('fetching games week', req.params);
-    // const { date, userName } = req.query;
-    // console.log('get food data', req.body)
-    Game.find().then(games => {
-        res.json(games);
+    Season.find().then(season => {
+        res.json(season[0]);
     });
 });
 
@@ -46,4 +35,4 @@ gameRouter.get('/fetch', function (req, res) {
 //     });
 // });
 
-module.exports = gameRouter;
+module.exports = seasonRouter;

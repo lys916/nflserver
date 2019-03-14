@@ -7,7 +7,7 @@ const GameSchema = new mongoose.Schema({
     homeTeam: Schema.Types.Mixed,
     roadSpread: { type: String },
     homeSpread: { type: String },
-    week: { type: String },
+    week: { type: Number },
     winner: { type: String, default: null }
 });
 

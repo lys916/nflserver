@@ -1,16 +1,16 @@
 const games = [
     {
         homeTeam: {
-            name: 'Raiders',
-            city: "Oakland"
+            name: 'Lions',
+            city: "Detroit"
         },
         roadTeam: {
-            name: 'Chiefs',
-            city: "Kansas City"
+            name: 'Buccaneers',
+            city: "Tampa Bay"
         },
         homeSpread: '+7',
         roadSpread: '-7',
-        week: '1',
+        week: 1,
         winner: null,
     },
     {
@@ -24,7 +24,7 @@ const games = [
         },
         homeSpread: '-4',
         roadSpread: '+4',
-        week: '1',
+        week: 1,
         winner: null
     },
     {
@@ -38,7 +38,7 @@ const games = [
         },
         homeSpread: '+3',
         roadSpread: '-3',
-        week: '1',
+        week: 1,
         winner: null
     },
     {
@@ -52,7 +52,7 @@ const games = [
         },
         homeSpread: '+3',
         roadSpread: '-3',
-        week: '1',
+        week: 1,
         winner: null
     },
     {
@@ -66,7 +66,7 @@ const games = [
         },
         homeSpread: '+7',
         roadSpread: '-7',
-        week: '1',
+        week: 1,
         winner: null
     },
     {
@@ -80,13 +80,13 @@ const games = [
         },
         homeSpread: '-4',
         roadSpread: '+4',
-        week: '1',
+        week: 1,
         winner: null
     },
     {
         homeTeam: {
-            name: 'Vikings',
-            city: 'Minnesota'
+            name: 'Eagles',
+            city: 'Philidalphia'
         },
         roadTeam: {
             name: 'Eagles',
@@ -94,21 +94,7 @@ const games = [
         },
         homeSpread: '+3',
         roadSpread: '-3',
-        week: '1',
-        winner: null
-    },
-    {
-        homeTeam: {
-            name: 'Jets',
-            city: 'New York'
-        },
-        roadTeam: {
-            name: 'Bills',
-            city: 'Buffalo'
-        },
-        homeSpread: '+3',
-        roadSpread: '-3',
-        week: '1',
+        week: 2,
         winner: null
     }
 ];
