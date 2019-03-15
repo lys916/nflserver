@@ -5,6 +5,7 @@ const Pick = require('./pickModel');
 const League = require('../league/leagueModel');
 
 pickRouter.post('/fetch', function (req, res) {
+	console.log('api fetching picks');
 	// const { date, userName } = req.query;
 	// console.log('get food data', req.body)
 	const { league } = req.body;
@@ -15,7 +16,7 @@ pickRouter.post('/fetch', function (req, res) {
 });
 
 pickRouter.post('/create', function (req, res) {
-	console.log('creating a pick', req.body);
+	console.log('api creating a pick');
 	Pick.create(req.body).then(pick => {
 		League.findById(pick.league).then(league => {
 			league.picks.push(pick._id);
@@ -32,6 +33,7 @@ pickRouter.post('/create', function (req, res) {
 
 
 pickRouter.post('/delete', function (req, res) {
+	console.log('api deleting a pick');
 	const { id } = req.body;
 	Pick.findByIdAndRemove(id).then(deleted => {
 		League.findByIdAndUpdate(deleted.league,
@@ -47,6 +49,7 @@ pickRouter.post('/delete', function (req, res) {
 });
 
 pickRouter.post('/update', function (req, res) {
+	console.log('api updating a pick');
 	const { id } = req.body;
 	Pick.findById(id).then(pick => {
 		pick.selected = pick.selected === 'home' ? 'road' : 'home';

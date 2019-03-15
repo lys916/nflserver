@@ -1,16 +1,16 @@
 const games = [
     {
         homeTeam: {
-            name: 'Lions',
-            city: "Detroit"
+            name: 'Broncos',
+            city: 'Denver'
         },
         roadTeam: {
-            name: 'Buccaneers',
-            city: "Tampa Bay"
+            name: '49ers',
+            city: 'San Francisco'
         },
         homeSpread: '+7',
         roadSpread: '-7',
-        week: 1,
+        week: 3,
         winner: null,
     },
     {
@@ -19,12 +19,13 @@ const games = [
             city: 'Tennessee'
         },
         roadTeam: {
-            name: '49ers',
-            city: 'San Francisco'
+            name: 'Buccaneers',
+            city: "Tampa Bay"
+
         },
         homeSpread: '-4',
         roadSpread: '+4',
-        week: 1,
+        week: 3,
         winner: null
     },
     {
@@ -38,13 +39,13 @@ const games = [
         },
         homeSpread: '+3',
         roadSpread: '-3',
-        week: 1,
+        week: 3,
         winner: null
     },
     {
         homeTeam: {
-            name: 'Broncos',
-            city: 'Denver'
+            name: 'Falcons',
+            city: "Atlanta"
         },
         roadTeam: {
             name: 'Seahawks',
@@ -52,7 +53,7 @@ const games = [
         },
         homeSpread: '+3',
         roadSpread: '-3',
-        week: 1,
+        week: 2,
         winner: null
     },
     {
@@ -61,12 +62,14 @@ const games = [
             city: "Seattle"
         },
         roadTeam: {
-            name: 'Falcons',
-            city: "Atlanta"
+
+            name: 'Lions',
+            city: "Detroit"
+
         },
         homeSpread: '+7',
         roadSpread: '-7',
-        week: 1,
+        week: 2,
         winner: null
     },
     {
@@ -75,18 +78,19 @@ const games = [
             city: 'Los Angeles'
         },
         roadTeam: {
-            name: 'Patriots',
-            city: 'New England'
+            name: 'Cowboys',
+            city: 'Dallas'
         },
         homeSpread: '-4',
         roadSpread: '+4',
-        week: 1,
+        week: 2,
         winner: null
     },
     {
         homeTeam: {
-            name: 'Eagles',
-            city: 'Philidalphia'
+            name: 'Patriots',
+            city: 'New England'
+
         },
         roadTeam: {
             name: 'Eagles',

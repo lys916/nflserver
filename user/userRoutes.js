@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 userRouter.post('/signup', function (req, res) {
-    console.log('sign up route hit');
+    console.log('api signing up a user');
     const { email, password, name } = req.body;
     User.find({ email }).then(userFound => {
         console.log('user found', userFound);
@@ -32,7 +32,7 @@ userRouter.post('/signup', function (req, res) {
 });
 
 userRouter.post('/login', function (req, res) {
-    console.log('user logging in', req.body);
+    console.log('api logging in a user');
     const { email, password } = req.body;
     User.findOne({ email }).then(user => {
         if (!user) {
@@ -54,7 +54,7 @@ userRouter.post('/login', function (req, res) {
 });
 
 userRouter.post('/invite', function (req, res) {
-    console.log('user inviting', req.body);
+    console.log('api inviting users');
     const { leagueName, leaguePin, leagueId, leagueNotes, startWeek, endWeek } = req.body.league;
     const { userName, email } = req.body.user;
     const { inviteEmails } = req.body.emails;
@@ -117,6 +117,8 @@ userRouter.post('/invite', function (req, res) {
 });
 
 userRouter.get('/byLeagueId/:leagueId', function (req, res) {
+    console.log('api getting a user with id ', req.params);
+
     const { leagueId } = req.params;
     User.find({ leagues: leagueId }).then(users => {
         res.json(users);

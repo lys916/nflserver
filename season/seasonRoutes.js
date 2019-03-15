@@ -11,6 +11,7 @@ const Season = require('./seasonModel');
 // });
 
 seasonRouter.get('/', function (req, res) {
+    console.log('api getting a season');
 
     Season.find().then(season => {
         res.json(season[0]);

@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 leagueRouter.post('/create', function (req, res) {
-    console.log('create league route hit');
+    console.log('api creating league');
     const { name, pin, weeks, notes, user, weekValues } = req.body;
 
     const league = new League({ name, pin, weeks, notes, });
@@ -56,6 +56,7 @@ leagueRouter.post('/create', function (req, res) {
 });
 
 leagueRouter.post('/join', function (req, res) {
+    console.log('api joining league');
     const { id, pin, user } = req.body;
 
     League.findOne({ leagueId: id }).then(league => {
@@ -105,7 +106,7 @@ leagueRouter.post('/join', function (req, res) {
 
 
 leagueRouter.get('/fetch/:id', function (req, res) {
-    console.log('fetching league id', req.params);
+    console.log('api fetching league with id', req.params);
     // const { date, userName } = req.query;
     // console.log('get food data', req.body)
     League.findById(req.params.id)
